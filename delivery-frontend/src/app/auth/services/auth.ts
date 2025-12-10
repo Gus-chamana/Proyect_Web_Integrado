@@ -16,9 +16,9 @@ export interface UserProfile {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth'; 
+  private apiUrl = 'https://proyect-web-integrado.onrender.com';
   private tokenKey = 'auth_token';
-  
+
   private userRoleSubject = new BehaviorSubject<string | null>(this.getRoleFromToken());
   public userRole$ = this.userRoleSubject.asObservable();
 
@@ -76,7 +76,7 @@ export class AuthService {
     if (!token) return null;
     try {
       const decoded: any = jwtDecode(token);
-      return decoded.role || decoded.roles || decoded.sub || null; 
+      return decoded.role || decoded.roles || decoded.sub || null;
     } catch (error) {
       return null;
     }
