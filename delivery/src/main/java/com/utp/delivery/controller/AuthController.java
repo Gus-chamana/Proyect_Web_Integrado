@@ -21,7 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class AuthController {
     
     private final AuthService authService;
@@ -44,8 +44,8 @@ public class AuthController {
 
         Usuario usuario = usuarioRepository.findByCorreo(correo)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        
-        String rolString = (usuario.getRol() != null) ? usuario.getRol().toString() : "CLIENTE";
+
+        String rolString = (usuario.getRol() != null) ? usuario.getRol() : "CLIENTE";
 
         UserProfileResponse response = UserProfileResponse.builder()
                 .id(usuario.getId())
@@ -62,8 +62,8 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> forgotPassword(@RequestBody Map<String, String> request) {
         String correo = request.get("correo").trim();
         String token = authService.generarTokenRecuperacion(correo);
-        
-        String link = "http://localhost:4200/auth/reset-password?token=" + token;
+
+        String link = "https://proyect-web-integrado.onrender.com/auth/reset-password?token=" + token;
         
         Map<String, String> response = new HashMap<>();
         response.put("mensaje", "Solicitud procesada.");
