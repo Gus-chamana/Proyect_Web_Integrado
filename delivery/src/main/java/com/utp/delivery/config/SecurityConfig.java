@@ -62,10 +62,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Aquí están tus URLs configuradas correctamente
-        configuration.setAllowedOrigins(List.of(
-                "https://proyect-web-integrado-frontend.onrender.com",
-                "http://localhost:4200"
-        ));
+        configuration.setAllowedOriginPatterns(List.of("*"));
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
