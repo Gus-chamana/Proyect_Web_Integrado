@@ -16,7 +16,7 @@ export interface UserProfile {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://proyect-web-integrado.onrender.com';
+  private apiUrl = 'https://proyect-web-integrado.onrender.com/api/auth';
   private tokenKey = 'auth_token';
 
   private userRoleSubject = new BehaviorSubject<string | null>(this.getRoleFromToken());
